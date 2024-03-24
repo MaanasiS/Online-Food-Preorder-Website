@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Checkout</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: linear-gradient(45deg, orange, yellow, orange);
+        background-size: 400% 400%;
+        animation: gradientAnimation 10s ease infinite;
+        margin: 0;
+        padding: 0;
+      }
+
+      @keyframes gradientAnimation {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        text-align: center;
+      }
+
+      h1 {
+        margin-top: 0;
+      }
+
+      h2 {
+        margin-top: 20px;
+      }
+
+      .payment-option {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+      }
+
+      .payment-option input[type="radio"] {
+        margin-right: 10px;
+      }
+
+      .card-info,
+      .upi-info {
+        display: none;
+      }
+
+      .card-info input,
+      .upi-info input {
+        width: 100%;
+        padding: 5px;
+        margin-top: 5px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+
+      button {
+        display: block;
+        margin: 20px auto;
+        padding: 10px 20px;
+        background-color: #4caf50;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+      }
+
+      button:hover {
+        background-color: #45a049;
+      }
+    </style>
+    <script>
+      function showPaymentInfo(paymentOption) {
+        var cardInfo = document.querySelector(".card-info");
+        var upiInfo = document.querySelector(".upi-info");
+
+        if (paymentOption === "card") {
+          cardInfo.style.display = "block";
+          upiInfo.style.display = "none";
+        } else if (paymentOption === "upi") {
+          cardInfo.style.display = "none";
+          upiInfo.style.display = "block";
+        } else {
+          cardInfo.style.display = "none";
+          upiInfo.style.display = "none";
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Checkout</h1>
+
+      <h2>Payment Options</h2>
+      <div class="payment-option">
+        <input
+          type="radio"
+          name="payment"
+          value="card"
+          onclick="showPaymentInfo('card')"
+        />
+        <label for="card">Card</label>
+      </div>
+      <div class="payment-option">
+        <input
+          type="radio"
+          name="payment"
+          value="upi"
+          onclick="showPaymentInfo('upi')"
+        />
+        <label for="upi">UPI</label>
+      </div>
+      <div class="payment-option">
+        <input
+          type="radio"
+          name="payment"
+          value="cod"
+          onclick="showPaymentInfo('cod')"
+        />
+        <label for="cod">Cash on Delivery</label>
+      </div>
+
+      <div class="card-info">
+        <input type="text" name="cardNumber" placeholder="Card Number" />
+        <input type="text" name="expiryDate" placeholder="Expiry Date" />
+        <input type="text" name="cvv" placeholder="CVV" />
+      </div>
+
+      <div class="upi-info">
+        <input type="text" name="upiId" placeholder="UPI ID" />
+      </div>
+
+      <button type="submit">Pay Now</button>
+    </div>
+  </body>
+</html>
